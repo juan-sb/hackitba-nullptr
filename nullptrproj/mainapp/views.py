@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
-from .serializers import MatchSerializer, ProjectSerializer
-from .models import Match, Project
+from .serializers import MatchSerializer, ProjectSerializer, CustomUserDetailsSerializer
+from .models import Match, Project, User
 from rest_framework import generics
 from django.db.models import Count
 from django.shortcuts import render
@@ -35,3 +35,8 @@ class MatchViewSet(viewsets.ModelViewSet):
 
 def VueView(request):
     return render(request, 'mainapp/vue.html')
+
+class UserViewSet(viewsets.ModelViewSet):    
+    queryset = User.objects.all().order_by('id')
+    serializer_class = CustomUserDetailsSerializer
+    filterset_fields = '__all__'

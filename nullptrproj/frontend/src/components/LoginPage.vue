@@ -78,7 +78,7 @@ import Proxy from '../Proxy'
 // })
 
 export default defineComponent({
-  name: "LoginScreen",
+  name: 'LoginPage',
 
   setup() {
     const password = ref('')
@@ -99,7 +99,7 @@ export default defineComponent({
           password: this.password,
           '["remember_me"]': true
         });
-        console.log(res)
+        console.log("ME PUEDO LOGEAR")
         this.$router.push({ name: "index" });
       } catch (error) {
         this.$q.notify("Error en las credenciales.");

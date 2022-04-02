@@ -11,17 +11,10 @@ class User(AbstractUser):
         INVESTOR = 'IN', _('Investor')
         PIONEER = 'PI', _('Pioneer')
         
-    
     user_type = models.CharField(max_length=2, choices=UserType.choices, default=UserType.PIONEER)
 
     def __str__(self):
         return self.username
-
-    # def save(self, *args, **kwargs):
-    #     if(self.is_superuser):
-    #         self.is_staff = True
-    #         self.is_active = True
-    #     super().save(*args, **kwargs)
 
 
 def limit_to_investors():

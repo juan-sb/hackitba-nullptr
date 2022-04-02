@@ -2,10 +2,10 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-    name: '',
+    name: 'ChatOverview',
     props: {
         
     }

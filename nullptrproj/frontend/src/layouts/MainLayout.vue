@@ -12,10 +12,9 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          MatchFunding
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -26,13 +25,31 @@
     >
       <q-list>
         <q-item-label header>Menú</q-item-label>
-        
-        <q-item tag="a" href="/admin/">
+
+        <q-item v-if="user.user_type == 'IN'" to="/pioneers">
           <q-item-section avatar>
-            <q-icon name="admin_panel_settings" />
+            <q-icon name="travel_explore" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Administración</q-item-label>
+            <q-item-label>Búsqueda de pioneros</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item v-else to="/myprojects">
+          <q-item-section avatar>
+            <q-icon name="assignment" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Mis proyectos</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item to="/chat">
+          <q-item-section avatar>
+            <q-icon name="question_answer" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Chat</q-item-label>
           </q-item-section>
         </q-item>
         
@@ -48,65 +65,28 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container style="width: 100%; height: 100%">
       <router-view />
-      <q-carousel
-        v-model="slide"
-        transition-prev="scale"
-        transition-next="scale"
-        swipeable
-        animated
-        control-color="white"
-        navigation
-        padding
-        arrows
-        height="300px"
-        class="bg-primary text-white shadow-1 rounded-borders"
-      >
-        <q-carousel-slide name="style" class="column no-wrap flex-center">
-          <q-icon name="style" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="tv" class="column no-wrap flex-center">
-          <q-icon name="live_tv" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <q-icon name="layers" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="map" class="column no-wrap flex-center">
-          <q-icon name="terrain" size="56px" />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
-        </q-carousel-slide>
-      </q-carousel>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
 import Proxy from '../Proxy'
 
 export default defineComponent({
   name: 'MainLayout',
 
   setup () {
-    const leftDrawerOpen = ref(true)
-    const slide = ref('style')
+    const leftDrawerOpen = ref(false)
+    const user = ref({
+      username: '',
+      user_type: ''
+    })
     return {
       leftDrawerOpen,
-      slide,
-      lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
+      user,
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       }
@@ -123,6 +103,14 @@ export default defineComponent({
         console.log(error.response);
       }
     }
+  },
+  async mounted () {
+    this.leftDrawerOpen = false
+    const res = await Proxy.get("/api/dj-rest-auth/user/", {
+      headers: { "Content-Type": "application/json" }
+    });
+    this.user.username = res.data.username
+    this.user.user_type = res.data.user_type
   }
 
 })

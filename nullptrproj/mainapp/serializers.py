@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from . import models
+from dj_rest_auth.serializers import UserDetailsSerializer
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     like_count = serializers.IntegerField(
@@ -15,3 +17,9 @@ class MatchSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Match
         fields = ['investor', 'project', 'hasEnded']
+
+class CustomUserDetailsSerializer(UserDetailsSerializer):
+    user_type = serializers.CharField()
+    
+    class Meta(UserDetailsSerializer.Meta):
+        fields = UserDetailsSerializer.Meta.fields + ('user_type', )

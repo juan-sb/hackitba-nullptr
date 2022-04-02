@@ -16,6 +16,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -25,7 +28,7 @@ SECRET_KEY = 'django-insecure-0&b6fwxuk$5nz0d$&t8*g2+vle6^iz%6lb5k^*mxc$ukp9x867
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'localhost', '127.0.0.1', '192.168.1.101']
+ALLOWED_HOSTS = [ 'localhost', '127.0.0.1:8000', '192.168.1.101', '127.0.0.1', '127.0.0.1:8080']
 
 
 # Application definition
@@ -47,6 +50,10 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'mainapp.User'
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'mainapp.serializers.CustomUserDetailsSerializer'
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "corsheaders.middleware.CorsMiddleware",
@@ -59,7 +66,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+ALLOWED_HOSTS = ['192.168.0.38', '127.0.0.1', 'localhost']
+
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:8080',
+#     'http://127.0.0.1:8080',
+#     'http://localhost:8000',
+#     'http://127.0.0.1:8000',
+#]
 
 ROOT_URLCONF = 'nullptrproj.urls'
 
