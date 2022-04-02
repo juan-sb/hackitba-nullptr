@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from mainapp.views import MatchViewSet, ProjectViewSet, VueView
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register(r'projects', ProjectViewSet, basename="projects")
+router.register(r'matches', MatchViewSet, basename="matches")
 
 urlpatterns = [
+    path('', VueView),
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/', include('rest_framework.urls')),
+    path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
 ]
