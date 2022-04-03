@@ -23,13 +23,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.62740847"
-     inkscape:cx="512.42535"
-     inkscape:cy="282.11287"
+     inkscape:zoom="0.125"
+     inkscape:cx="2276"
+     inkscape:cy="912"
      inkscape:window-width="1346"
-     inkscape:window-height="730"
+     inkscape:window-height="712"
      inkscape:window-x="10"
-     inkscape:window-y="28"
+     inkscape:window-y="46"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -331,19 +331,29 @@
            sodipodi:nodetypes="cc" />
       </g>
     </g>
+    <circle
+       style="fill:#4d4d4d;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       id="path11305"
+       cx="129.30827"
+       cy="73.960022"
+       r="71.024712"
+       inkscape:export-filename="/home/seabmo/projects/hackitba-nullptr/nullptrproj/frontend/src/favicon.ico"
+       inkscape:export-xdpi="5.681953"
+       inkscape:export-ydpi="5.681953" />
     <g
        id="g11124"
-       style="stroke:#000000"
-       inkscape:export-filename="/home/seabmo/projects/hackitba-nullptr/nullptrproj/frontend/src/assets/logo.png"
-       inkscape:export-xdpi="32.509998"
-       inkscape:export-ydpi="32.509998">
+       style="fill:#ffffff;stroke:#000000"
+       inkscape:export-filename="/home/seabmo/projects/hackitba-nullptr/logo-big.png"
+       inkscape:export-xdpi="213.47163"
+       inkscape:export-ydpi="213.47163"
+       transform="translate(0.67054393,116.22868)">
       <path
-         style="fill:none;stroke:#000000;stroke-width:2.11666667;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:#ffffff;stroke:#000000;stroke-width:2.11667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 114.09625,128.52691 c 9.44836,-9.45707 18.50406,-19.12658 4.08012,-41.498431 C 107.40352,73.788357 75.009035,56.219946 74.563263,43.002464 c -3.415598,9.92709 -2.972335,23.981207 13.243888,36.9916 -5.486006,-0.32447 -12.817792,-0.606593 -18.909647,-6.515117 1.934743,18.043009 13.886209,14.943655 22.895409,24.300811 -9.858808,1.980608 -8.985529,-0.19459 -20.960666,-6.257802 -2.37018,23.225704 38.236253,12.979104 43.264003,37.004954 z"
          id="path7848"
          sodipodi:nodetypes="cccccccc" />
       <path
-         style="fill:none;stroke:#000000;stroke-width:2.11666667;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+         style="fill:#ffffff;stroke:#000000;stroke-width:2.11667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m 143.42317,128.52691 c -9.44836,-9.45707 -18.50406,-19.12658 -4.08012,-41.49843 10.77285,-13.24012 43.16733,-30.808536 43.61311,-44.026018 3.41559,9.92709 2.97233,23.981207 -13.24389,36.991598 5.486,-0.32447 12.81779,-0.60659 18.90964,-6.515115 -1.93474,18.043005 -13.8862,14.943655 -22.8954,24.300815 9.8588,1.9806 8.98552,-0.19459 20.96066,-6.25781 2.37018,23.22571 -38.23625,12.97911 -43.264,37.00496 z"
          id="path7848-8"
          sodipodi:nodetypes="cccccccc" />
