@@ -5,6 +5,7 @@ import os
 
 def hashVideo(url):
     yt = pytube.YouTube(url)
+    print(dir(yt))
     video = yt.streams.first()
     video.download()
 
