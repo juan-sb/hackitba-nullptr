@@ -23,8 +23,9 @@ export default defineComponent({
     },
     async mounted() {
       const res = Proxy.get('matches/')
+      this.matches = res.data
 
-    }
+    },
     props: {
         
     }

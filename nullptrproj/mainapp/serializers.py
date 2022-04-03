@@ -17,13 +17,13 @@ class ProjectSerializer(serializers.ModelSerializer):
         ytvideo = pytube.YouTube(value)
         if(ytvideo.length > 60):
             raise serializers.ValidationError("El video de perfil es demasiado largo")
-        return value
+        return ytvideo.embed_url
 
     def validate_video_description(self, value):
         ytvideo = pytube.YouTube(value)
         if(ytvideo.length > 180):
             raise serializers.ValidationError("El video de descripción es demasiado largo")
-        return value
+        return ytvideo.embed_url
 
 
 class MatchSerializer(serializers.ModelSerializer):
@@ -43,3 +43,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     
     class Meta(UserDetailsSerializer.Meta):
         fields = UserDetailsSerializer.Meta.fields + ('user_type', )
+
+class LikeSerializer(serializers.ModelSerializer):
+    pass
+    
