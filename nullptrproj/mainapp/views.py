@@ -6,6 +6,7 @@ from rest_framework import generics
 from django.db.models import Count, Exists, OuterRef
 from django.shortcuts import render
 from django_filters.rest_framework import DjangoFilterBackend
+from django.http import HttpResponse
 
 class FilteredViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend]
@@ -58,3 +59,16 @@ class LikeViewSet(FilteredViewSet):
         else:
             queryset = Like.objects.filter(investor=user)
         return queryset
+
+
+def swapLike(request, project_param):
+    p = Project.objects.get(pk=project_param)
+    l = Like.objects.filter(project=p).filter(investor=request.user).all()
+    if(l.__len__() > 0):
+        l.delete()
+        s = "deleted"
+    else :
+        l = Like(project=p, investor=request.user)
+        l.save()
+        s = "created"
+    return HttpResponse(s)

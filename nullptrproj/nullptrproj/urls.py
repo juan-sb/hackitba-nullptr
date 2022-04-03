@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mainapp.views import MatchViewSet, ProjectViewSet, VueView, LikeViewSet
+from mainapp.views import MatchViewSet, ProjectViewSet, VueView, LikeViewSet, swapLike
 from rest_framework import routers
 
 
@@ -24,10 +24,12 @@ router.register(r'projects', ProjectViewSet, basename="projects")
 router.register(r'matches', MatchViewSet, basename="matches")
 router.register(r'likes', LikeViewSet, basename="likes")
 
+
 urlpatterns = [
     path('', VueView),
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('swaplike/<int:project_param>', swapLike),
     path('api/', include('rest_framework.urls')),
     path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
 ]

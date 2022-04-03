@@ -4,7 +4,6 @@
       style="width: 80%; height: 100%"
       class="column fixed-center justify-around items-center"
     >
-      <img style="width: 50%" src="logotemp.png" />
 
       <q-form @submit="onSubmit" class="q-gutter-md q-mb-xl" style="width:80%">
         <q-input

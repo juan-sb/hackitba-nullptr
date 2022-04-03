@@ -8,6 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
+          class="lt-md"
           @click="toggleLeftDrawer"
         />
 
@@ -93,7 +94,7 @@ export default defineComponent({
   name: 'MainLayout',
 
   setup () {
-    const leftDrawerOpen = ref(false)
+    const leftDrawerOpen = ref(true)
     const user = ref({
       username: '',
       user_type: ''
@@ -119,7 +120,7 @@ export default defineComponent({
     }
   },
   async mounted () {
-    this.leftDrawerOpen = false
+    this.leftDrawerOpen = true
     const res = await Proxy.get("/api/dj-rest-auth/user/", {
       headers: { "Content-Type": "application/json" }
     });
