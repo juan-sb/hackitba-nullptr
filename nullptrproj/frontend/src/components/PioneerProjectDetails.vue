@@ -1,23 +1,27 @@
 <template>
   <div class="text-center">
-    <h1>Proyecto XXX</h1>
+    <h1>Proyecto: {{project.name}}</h1>
   </div>
   <div 
     class="q-pa-md justify-center column content--container" 
     style="width: 100%;"
   >
     <div class="q-pa-md">
-      <div class="row">
-        <div class="col">Presentación personal:</div>
-        <div class="col-6"></div>
+      <div class="row q-my-md justify-start">
+        <div class="col col-12-xs col-12-sm self-end">Presentación personal:</div>
+        <div class="col-12-sm col-6 col-12-xl  ">
+          <a :href="project.video_profile"> {{project.video_profile}}</a>
+        </div>
       </div>
-      <div class="row">
+      <div class="row q-my-md">
         <div class="col">Presentación de tu idea:</div>
-        <div class="col-6"></div>
+        <div class="col-6">
+          <a :href="project.video_description"> {{project.video_description}}</a>
+        </div>
       </div>
-      <div class="row">
+      <div class="row q-my-md">
         <div class="col">Descripción:</div>
-        <div class="col-6"></div>
+        <div class="col-6">{{project.description}}</div>
       </div>
     </div>
   </div>
@@ -30,17 +34,14 @@ import Proxy from '../Proxy'
 export default defineComponent({
     name: 'PioneerProjects',
     setup() {
-        const project = ref([{}])
-        // console.log(this.$route.query.pageqq)
-        
+        const project = ref({})
         return {
-            project
+          project
         }
     },
     async mounted() {
-        const res = await Proxy.get('projects/?name=')
-        const projectsResponse = await Proxy.get('projects/')
-        this.projects = projectsResponse.data
+      const res = await Proxy.get('projects/?name=' + this.$route.query.name)
+      this.project = res.data[0]
     }
 })
 

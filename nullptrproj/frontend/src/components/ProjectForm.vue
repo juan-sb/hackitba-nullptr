@@ -9,6 +9,15 @@
       class="project-form"
     >
       <q-input
+        ref="nameRef"
+        filled
+        v-model="name"
+        label="Nombre del desarrollo"
+        hint="Breve y conciso"
+        lazy-rules
+        :rules="briefRules"
+      />
+      <q-input
         ref="cvRef"
         filled
         v-model="url_cv"
@@ -46,7 +55,7 @@
       />
 
       <div class="project-form-button--container">
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn label="Submit" type="submit" color="primary" @onClick="submitProject" />
       </div>
     </form>
   </div>
@@ -55,10 +64,14 @@
 <script>
 import { useQuasar } from 'quasar'
 import { ref } from 'vue'
+import Proxy from '../Proxy'
 
 export default {
   setup () {
     const $q = useQuasar()
+
+    const name = ref(null)
+    const nameRef = ref(null)
 
     const url_cv = ref(null)
     const cvRef = ref(null)
@@ -83,6 +96,9 @@ export default {
       url_idea,
       ideaRef,
 
+      name,
+      nameRef,
+
       brief_description,
       briefRef,
       briefRules: [
@@ -95,6 +111,8 @@ export default {
       onSubmit () {
         cvRef.value.validate()
         ideaRef.value.validate()
+        briefRef.value.validate()
+        nameRef.value.validate()
 
         if (cvRef.value.hasError || ideaRef.value.hasError) {
           // form has error
@@ -106,10 +124,20 @@ export default {
           })
         }
         else {
-          $q.notify({
-            icon: 'done',
-            color: 'positive',
-            message: 'Submitted'
+          Proxy.get('api/dj-rest-auth/user/').then(res => {
+            Proxy.post('projects/', {
+              "pioneer": res.data.pk,
+              "video_profile": url_cv.value,
+              "video_description": url_idea.value,
+              "description": brief_description.value,
+              "name": name.value
+            }).then(res => {
+              $q.notify({
+                icon: 'done',
+                color: 'positive',
+                message: 'Submitted'
+              })
+            })
           })
         }
       }

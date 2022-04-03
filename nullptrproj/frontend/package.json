@@ -11,6 +11,8 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@lyno/lib-jitsi-meet": "^2.6726.2",
+    "@mycure/vue-jitsi-meet": "^0.0.7",
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
     "bing": "^0.1.0",

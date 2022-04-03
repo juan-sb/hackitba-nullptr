@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from . import models
 from dj_rest_auth.serializers import UserDetailsSerializer
-
+import pytube
 
 
 class ProjectSerializer(serializers.ModelSerializer):
@@ -12,6 +12,19 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Project
         fields = ['name', 'video_profile', 'video_description', 'description', 'like_count', 'pioneer', 'pk']
+
+    def validate_video_profile(self, value):
+        ytvideo = pytube.YouTube(value)
+        if(ytvideo.length > 60):
+            raise serializers.ValidationError("El video de perfil es demasiado largo")
+        return value
+
+    def validate_video_description(self, value):
+        ytvideo = pytube.YouTube(value)
+        if(ytvideo.length > 180):
+            raise serializers.ValidationError("El video de descripción es demasiado largo")
+        return value
+
 
 class MatchSerializer(serializers.ModelSerializer):
     project = ProjectSerializer(read_only=True)
