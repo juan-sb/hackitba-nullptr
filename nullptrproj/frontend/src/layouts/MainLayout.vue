@@ -13,7 +13,7 @@
 
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+            <img src="/assets/logo.png">
           </q-avatar>
           MatchFunding
         </q-toolbar-title>
@@ -44,6 +44,15 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Mis proyectos</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item v-if="user.user_type == 'IN'" to="/angel/matches">
+          <q-item-section avatar>
+            <q-icon name="psychology" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Proyectos que seguís</q-item-label>
           </q-item-section>
         </q-item>
 

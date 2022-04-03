@@ -11,6 +11,7 @@ const routes = [
       { path: '/pioneers', component: () => import('components/PioneerSearch')},
       { path: '/myprojects', component: () => import('components/PioneerProjects')},
       { path: '/myprojects/form', component: () => import('components/ProjectForm')},
+      { path: '/angel/matches', component: () => import('components/AngelMatches')},
     ]
   },
   {

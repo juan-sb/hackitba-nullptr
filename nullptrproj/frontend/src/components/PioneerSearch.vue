@@ -24,7 +24,7 @@
                     <div class="text-h6">{{ projects[0].description }}</div>
                 </q-card-section>
             </q-card>
-            <div v-else>No quedan más pioneros!</div>
+            <div v-else><h3>¡No quedan más pioneros!</h3></div>
         </div>
         <div class="gt-sm col-4"/>
     </div>
