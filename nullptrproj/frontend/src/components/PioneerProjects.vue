@@ -5,7 +5,7 @@
             <q-item v-for="project in projects" v-bind:key="project.name">
                 <q-item-section>
                     <q-item-label overline>{{ project.name }}</q-item-label>
-                        <q-item-label caption>Secondary line text. Lorem ipsum dolor sit amet, consectetur adipiscit elit.</q-item-label>
+                        <q-item-label caption>{{ project.description }}</q-item-label>
                     </q-item-section>
 
                     <q-item-section side>

@@ -1,30 +1,35 @@
 <template>
-<div class="column justify-center items-center content-center vertical-middle" >
-    <div id="A" class=".col-3"/>
-    <q-carousel
-        v-model="slide"
-        transition-prev="slide-right"
-        transition-next="slide-left"
-        swipeable
-        animated
-        padding
-        arrows
-        height="80vh"
-        width="50vw"
-        class="bg-primary text-white shadow-1 rounded-borders .col-6"
-    >
+<div class="column justify-start items-start content-start full-height full-width fixed">
 
-        <q-carousel-slide 
-            v-for="project in projects" 
-            v-bind:key="project.name" 
-            :name="project.name"
-        >
-            <div class="full">
-                <q-video class="full" :src="project.video_profile" />
-            </div>
-        </q-carousel-slide>
-    </q-carousel>
-    <div class=".col-3"/>
+    <div class="gt-sm col-2 full-width"/>
+    <div class="row col-grow full-width">
+        <div class="gt-sm col-4"/>
+        <div class="col-grow" >
+            <q-card v-if="projects.length > 0" v-touch-swipe.mouse="handleSwipe"
+                class="full-height full-width"
+                draggable="false">
+                <q-card-section>
+                    <div class="text-h6">{{ projects[0].name }}</div>
+                        <q-icon left size="1.5em" name="favorite" color="red" />
+                        <span>{{ projects[0].like_count }} </span>
+                </q-card-section>
+
+                <q-video src="https://www.youtube.com/embed/VGaTBZ51YDM"/>
+
+                <q-separator inset/>
+                
+                <q-video src="https://www.youtube.com/embed/VGaTBZ51YDM"/>
+
+                <q-card-section>
+                    <div class="text-h6">{{ projects[0].description }}</div>
+                </q-card-section>
+            </q-card>
+            <div v-else>No quedan más pioneros!</div>
+        </div>
+        <div class="gt-sm col-4"/>
+    </div>
+    <div class="gt-sm col-2 full-width"/>
+
 </div>
 </template>
 
@@ -32,22 +37,45 @@
 import { defineComponent, ref } from 'vue'
 import Proxy from '../Proxy'
 
+
 export default defineComponent({
     name: 'PioneerSearch',
     setup() {
-        const slide = ref('')
+        const user = {}
         const projects = ref([{}])
         return {
-            slide,
+            user,
             projects,
+            async updateProjects() {
+                const projectsResponse = await Proxy.get('projects/')
+                this.projects = projectsResponse.data
+            }
         }
     },
     async mounted() {
         const res = await Proxy.get('api/dj-rest-auth/user')
-        const projectsResponse = await Proxy.get('projects/')
-        this.projects = projectsResponse.data
-        this.slide = this.projects[0].name
+        this.user = res.data
+        this.updateProjects()
+        console.log(this.projects[0].description)
+    },
+    methods: {
+        async handleSwipe({ evt, ...newInfo }) {
+            if(newInfo.direction != 'left' && newInfo.direction != 'right') return;
+            const positiveMatch = newInfo.direction == 'right' ? 1 : 0;
+            const res = await Proxy.post('/matches/', {
+                'investor': this.user.pk,
+                'project': this.projects[0].pk,
+                'hasEnded': !positiveMatch
+            })
+            this.updateProjects()
+        }
     }
 })
 
 </script>
+
+<style>
+#jorge {
+    background-color: #000000;
+}
+</style>

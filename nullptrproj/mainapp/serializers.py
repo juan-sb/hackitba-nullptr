@@ -3,6 +3,7 @@ from . import models
 from dj_rest_auth.serializers import UserDetailsSerializer
 
 
+
 class ProjectSerializer(serializers.ModelSerializer):
     like_count = serializers.IntegerField(
         source='like_set.count', 
@@ -10,13 +11,19 @@ class ProjectSerializer(serializers.ModelSerializer):
     )
     class Meta:
         model = models.Project
-        fields = ['name', 'video_profile', 'video_description', 'description', 'like_count']
+        fields = ['name', 'video_profile', 'video_description', 'description', 'like_count', 'pioneer', 'pk']
 
 class MatchSerializer(serializers.ModelSerializer):
     project = ProjectSerializer(read_only=True)
     class Meta:
         model = models.Match
-        fields = ['investor', 'project', 'hasEnded']
+        fields = "__all__"
+
+class MatchCreateSerializer(serializers.ModelSerializer):
+    project = serializers.PrimaryKeyRelatedField(queryset=models.Project.objects.all())
+    class Meta:
+        model = models.Match
+        fields = "__all__"
 
 class CustomUserDetailsSerializer(UserDetailsSerializer):
     user_type = serializers.CharField()

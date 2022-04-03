@@ -52,6 +52,8 @@
             <q-item-label>Chat</q-item-label>
           </q-item-section>
         </q-item>
+
+        <q-space/>  
         
         <q-item clickable @click="logout">
           <q-item-section avatar>
@@ -65,7 +67,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container style="width: 100%; height: 100%">
+    <q-page-container class="full-width full-height">
       <router-view />
     </q-page-container>
   </q-layout>

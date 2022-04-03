@@ -56,6 +56,7 @@ class Match(models.Model):
     project = ForeignKey(Project, on_delete=models.CASCADE)
     hasEnded = BooleanField(default = False)
 
+
     class Meta:
         verbose_name = _('Match')
         verbose_name_plural = _('Matches')

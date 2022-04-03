@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const _axios = axios.create({
-  withCredentials: true,
-  crossDomain: true
+  withCredentials: true
 });
 
 if (process.env.NODE_ENV !== 'production') {
