@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mainapp.views import MatchViewSet, ProjectViewSet, VueView
+from mainapp.views import MatchViewSet, ProjectViewSet, VueView, LikeViewSet
 from rest_framework import routers
 
 
 router = routers.DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename="projects")
 router.register(r'matches', MatchViewSet, basename="matches")
+router.register(r'likes', LikeViewSet, basename="likes")
 
 urlpatterns = [
     path('', VueView),

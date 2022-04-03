@@ -45,5 +45,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
         fields = UserDetailsSerializer.Meta.fields + ('user_type', )
 
 class LikeSerializer(serializers.ModelSerializer):
-    pass
+    class Meta:
+        model = models.Like
+        fields = '__all__'
     

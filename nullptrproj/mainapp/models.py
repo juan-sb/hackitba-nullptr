@@ -70,3 +70,6 @@ class Like(models.Model):
     class Meta:
         verbose_name = _('Like')
         verbose_name_plural = _('Likes')
+
+    def create(self, validated_data):
+        validated_data.project 
