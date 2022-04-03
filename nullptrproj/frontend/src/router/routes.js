@@ -7,8 +7,10 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: '/chat', component: () => import('components/ChatPage.vue')},
+      { path: '/projects', component: () => import('components/PioneerProjectDetails')},
       { path: '/pioneers', component: () => import('components/PioneerSearch')},
       { path: '/myprojects', component: () => import('components/PioneerProjects')},
+      { path: '/myprojects/form', component: () => import('components/ProjectForm')},
     ]
   },
   {

@@ -1,0 +1,14 @@
+.project-form {
+  &--container {
+    max-width: $global-max-width;
+    margin: 25px auto;
+
+    .q-field {
+      margin: 20px auto;
+    }
+  }
+  &-button--container {
+    width: fit-content;
+    margin: 25px auto;
+  }
+}

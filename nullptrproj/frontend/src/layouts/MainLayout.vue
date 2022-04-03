@@ -1,6 +1,6 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh lpR fFf">
+    <q-header elevated class="bg-primary text-white">
       <q-toolbar>
         <q-btn
           flat
@@ -12,9 +12,11 @@
         />
 
         <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+          </q-avatar>
           MatchFunding
         </q-toolbar-title>
-
       </q-toolbar>
     </q-header>
 
@@ -22,6 +24,7 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      side="left"
     >
       <q-list>
         <q-item-label header>Menú</q-item-label>
@@ -67,7 +70,11 @@
       </q-list>
     </q-drawer>
 
+<<<<<<< HEAD
     <q-page-container class="full-width full-height">
+=======
+    <q-page-container>
+>>>>>>> 97fc519 (Started customization and adding missing screens)
       <router-view />
     </q-page-container>
   </q-layout>
