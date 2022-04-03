@@ -70,11 +70,7 @@
       </q-list>
     </q-drawer>
 
-<<<<<<< HEAD
-    <q-page-container class="full-width full-height">
-=======
     <q-page-container>
->>>>>>> 97fc519 (Started customization and adding missing screens)
       <router-view />
     </q-page-container>
   </q-layout>
